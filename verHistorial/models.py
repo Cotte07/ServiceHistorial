@@ -1,14 +1,14 @@
 from django.db import models
 #db_table -> sirve para comunicarse con la tabla de la bd
 #manage: false -> asi se restringe hacer cambios en la bd desde este proyecto
-class Categoria(models.Model):
+class Categoria(models.Model):#TABLA CATEGORIA DE LA BD
     nombre = models.CharField(max_length=20)
 
     class Meta:
         managed = False
         db_table = 'consultarInv_categoria'
 
-class Producto(models.Model):
+class Producto(models.Model):#TABLA PRODUCTO DE LA BD
     nombre = models.CharField(max_length=30)
     proveedor = models.CharField(max_length=20)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, null=True)
@@ -18,14 +18,14 @@ class Producto(models.Model):
         managed = False
         db_table = 'consultarInv_producto'
 
-class Historial(models.Model):
+class Historial(models.Model):#TABLA HISTORIAL DE LA BD
     fecha_compra = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         managed = False
         db_table = 'consultarInv_historial'
 
-class Lote(models.Model):
+class Lote(models.Model):#TABLA LOTE DE LA BD
     fecha_Rotacion = models.DateField(null=True, blank=True)
     estado = models.CharField(max_length=20, blank=True)
     id_Producto = models.ForeignKey(Producto, on_delete=models.PROTECT, null=True)
@@ -35,7 +35,7 @@ class Lote(models.Model):
         managed = False
         db_table = 'consultarInv_lote'
 
-class Lote_Historial(models.Model):
+class Lote_Historial(models.Model):#TABLA LOTE_HISTORIAL DE LA BD
     id_lote = models.ForeignKey(Lote, on_delete=models.PROTECT, null=True)
     id_historial = models.ForeignKey(Historial, on_delete=models.PROTECT, null=True)
     cantidad = models.DecimalField(max_digits=9, decimal_places=0)

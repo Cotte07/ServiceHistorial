@@ -3,7 +3,7 @@ from django.db.models import F, Value, CharField, IntegerField, ExpressionWrappe
 from django.db.models.functions import Cast
 from typing import List, Dict, Any
 from .models import Lote_Historial
-
+#consulta la base de datos los productos con el estado FALSE
 def historial_productos(orden_descendente=False):
     orden = '-id_historial__fecha_compra' if orden_descendente else 'id_historial__fecha_compra'
     
